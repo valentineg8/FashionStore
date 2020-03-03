@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             xmlns:b="clr-namespace:FashionStore.Behavior"
+             x:Class="FashionStore.Views.ProductsPage"
+             x:Name="MainPage">
+    <ScrollView>
+        <StackLayout Padding="0, 10, 0, 0">
+            <FlexLayout BindableLayout.ItemsSource="{Binding Products}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceAround">
+                <BindableLayout.ItemTemplate>
+                     <DataTemplate>
+                        <Grid Margin="5"
+                              HeightRequest="250"
+                              WidthRequest="200"
+                              RowSpacing="0">
+                             <Grid.RowDefinitions>
+                                 <RowDefinition Height="180"/>
+                                 <RowDefinition Height="*"/>
+                             </Grid.RowDefinitions>
+                             <yummy:PancakeView CornerRadius="20"
+                                                Grid.RowSpan="2">
+                                 <Image Source="{Binding Photo}"
+                                        Aspect="AspectFill"/>
+                             </yummy:PancakeView>
+                             <yummy:PancakeView CornerRadius="0, 0, 20, 20"
+                                                Grid.Row="1"
+                                                Opacity=".4"
+                                                BackgroundColor="#000"
+                                                >
+                             </yummy:PancakeView>
+                             <StackLayout Grid.Row="1"
+                                          Padding="10, 0"
+                                          VerticalOptions="CenterAndExpand"
+                                          Spacing="2">
+                                <Label Text="{Binding Name}"
+                                        FontSize="15"
+                                        Grid.Row="1"
+                                        TextColor="White"/>
+                                <Label Text="{Binding Price}"
+                                        FontSize="18"
+                                        FontAttributes="Bold"
+                                        TextColor="#F0F0F0"
+                                        Grid.Row="2"/>
+                             </StackLayout>
+                             <iconize:IconLabel Text="far-heart"
+                                                FontSize="22"
+                                                Margin="10, 10"
+                                                TextColor="White"
+                                                VerticalOptions="StartAndExpand"
+                                                HorizontalOptions="EndAndExpand">
+                                 <iconize:IconLabel.Triggers>
+                                     <DataTrigger TargetType="iconize:IconLabel"
+                                                  Binding="{Binding IsFavorite}"
+                                                  Value="True">
+                                         <Setter Property="Text"
+                                                 Value="fas-heart"/>
+                                         <Setter Property="TextColor"
+                                                 Value="#ed4956"/>
+                                     </DataTrigger>
+                                 </iconize:IconLabel.Triggers>
+                                 <iconize:IconLabel.Behaviors>
+                                     <b:ViewTappedButtonBehavior AnimationType="Scale"
+                                                                 Command="{Binding BindingContext.ToggleFavoriteCommand, Source={x:Reference MainPage}}"
+                                                                 CommandParameter="{Binding }"/>
+                                 </iconize:IconLabel.Behaviors>
+                             </iconize:IconLabel>
+                             <Grid.Behaviors>
+                                 <b:ViewTappedButtonBehavior AnimationType="Scale"
+                                                             ScaleTo="1.05"/>
+                             </Grid.Behaviors>
+                         </Grid>
+                     </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
