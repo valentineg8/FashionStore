@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Plugin.SharedTransitions;
 using Xamarin.Forms;
 
 namespace FashionStore.Views
@@ -12,49 +11,42 @@ namespace FashionStore.Views
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
-            favBtn.TranslateTo(0, 70, 100, Easing.Linear);
-
-            shareBtn.TranslateTo(0, 70, 100, Easing.Linear);
-
-            priceContainer.ScaleTo(0, 100, Easing.Linear);
-            priceContainer.TranslateTo(0, 100, 100, Easing.Linear);
-
-            sizeContainer.ScaleTo(0, 100, Easing.Linear);
-            sizeContainer.TranslateTo(0, 100, 100, Easing.Linear);
-
-            productName.FadeTo(0, 100, Easing.Linear);
 
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            shareBtn.TranslateTo(0, 0, 250, Easing.Linear);
-            favBtn.TranslateTo(0, 0, 400, Easing.Linear);
+            shareBtn.TranslateTo(0, 0, 300, Easing.CubicOut);
+            favBtn.TranslateTo(0, 0, 500, Easing.CubicOut);
 
-            priceContainer.TranslateTo(0, 0, 300, Easing.Linear);
-            priceContainer.ScaleTo(1, 300, Easing.Linear);
+            moreLikeBtn.TranslateTo(0, 0, 500, Easing.CubicOut);
 
-            sizeContainer.TranslateTo(0, 0, 300, Easing.Linear);
-            sizeContainer.ScaleTo(1, 300, Easing.Linear);
+            priceContainer.TranslateTo(0, 0, 400, Easing.CubicOut);
+            priceContainer.ScaleTo(1, 400, Easing.CubicOut);
 
-            productName.FadeTo(1, 400, Easing.Linear);
+            sizeContainer.TranslateTo(0, 0, 400, Easing.CubicOut);
+            sizeContainer.ScaleTo(1, 400, Easing.CubicOut);
+
+            productName.FadeTo(1, 500, Easing.CubicOut);
+            productName.TranslateTo(0, 0, 500, Easing.CubicOut);
 
 
         }
 
         void MoreLikeSectionToggle(System.Object sender, System.EventArgs e)
         {
-            Animation animate;
+            Animation animateSection;
             if (MoreLikeSectionIsOpen)
             {
-                animate = new Animation(d => moreLikeSection.HeightRequest = d, 460, 60);
+                animateSection = new Animation(d => moreLikeSection.HeightRequest = d, 340, 60);
             }
             else
             {
-                animate = new Animation(d => moreLikeSection.HeightRequest = d, 60, 460);
+                animateSection = new Animation(d => moreLikeSection.HeightRequest = d, 60, 340);
             }
-            animate.Commit(moreLikeSection, "MoreLikeSectionToggleAnimation", 60, 700, Easing.CubicOut);
+            animateSection.Commit(moreLikeSection, "MoreLikeSectionToggleAnimation", 60, 500, Easing.CubicOut);
             MoreLikeSectionIsOpen = !MoreLikeSectionIsOpen;
+            moreLikeArrow.RotateTo(MoreLikeSectionIsOpen ? 180 : 0, 300, Easing.Linear);
         }
     }
 }

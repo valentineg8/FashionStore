@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using FashionStore.Components;
 using Xamarin.Forms;
 
 namespace FashionStore.Views
@@ -12,6 +12,8 @@ namespace FashionStore.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             InitializeComponent();
+
         }
+
     }
 }

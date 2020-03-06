@@ -153,6 +153,7 @@
     <BundleResource Include="Resources\FontAwesome5BrandsRegular.otf" />
     <BundleResource Include="Resources\FontAwesome5Regular.otf" />
     <BundleResource Include="Resources\FontAwesome5Solid.otf" />
+    <BundleResource Include="Resources\SacramentoRegular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

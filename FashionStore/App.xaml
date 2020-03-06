@@ -14,8 +14,6 @@
                   Value="FontAwesome5Brands.otf#Regular" />
               <On Platform="iOS" 
                   Value="FontAwesome5Brands-Regular" />
-              <On Platform="UWP" 
-                  Value="/Assets/FontAwesome5Brands.otf#Font Awesome 5 Brands" />
             </OnPlatform> 
     
             <OnPlatform x:TypeArguments="x:String" 
@@ -24,8 +22,6 @@
                   Value="FontAwesome5Solid.otf#Regular" /> 
               <On Platform="iOS" 
                   Value="FontAwesome5Free-Solid" /> 
-              <On Platform="UWP" 
-                  Value="/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free" /> 
             </OnPlatform> 
     
             <OnPlatform x:TypeArguments="x:String" 
@@ -34,9 +30,15 @@
                   Value="FontAwesome5Regular.otf#Regular" /> 
               <On Platform="iOS" 
                   Value="FontAwesome5Free-Regular" /> 
-              <On Platform="UWP" 
-                  Value="/Assets/FontAwesome5Regular.otf#Font Awesome 5 Free" /> 
             </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                        x:Key="Sacramento"> 
+              <On Platform="Android" 
+                  Value="SacramentoRegular.ttf#Regular" /> 
+              <On Platform="iOS" 
+                  Value="Sacramento-Regular" /> 
+            </OnPlatform> 
           </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

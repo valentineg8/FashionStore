@@ -29,6 +29,7 @@
     <Folder Include="Behavior\" />
     <Folder Include="Controls\" />
     <Folder Include="Utils\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\ProductDetailPage.xaml.cs">
