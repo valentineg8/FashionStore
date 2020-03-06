@@ -9,6 +9,8 @@ namespace FashionStore.Views
     {
         public ProductsPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
+
             InitializeComponent();
         }
     }

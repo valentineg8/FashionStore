@@ -67,6 +67,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\CustomScrollViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -133,6 +134,12 @@
     <PackageReference Include="Xam.Plugin.Iconize.FontAwesome">
       <Version>3.5.0.129</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Plugin.SharedTransitions">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -143,9 +150,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\thsirt1.jpg" />
-    <BundleResource Include="Resources\tshirt2.jpg" />
-    <BundleResource Include="Resources\iconize-fontawesome-brands.ttf" />
-    <BundleResource Include="Resources\iconize-fontawesome-regular.ttf" />
-    <BundleResource Include="Resources\iconize-fontawesome-solid.ttf" />
+    <BundleResource Include="Resources\FontAwesome5BrandsRegular.otf" />
+    <BundleResource Include="Resources\FontAwesome5Regular.otf" />
+    <BundleResource Include="Resources\FontAwesome5Solid.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Renderers\" />
   </ItemGroup>
 </Project>

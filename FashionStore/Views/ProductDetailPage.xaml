@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:FashionStore.Controls"
+             x:Class="FashionStore.Views.ProductDetailPage">
+    <RelativeLayout Padding="0">
+            
+        <controls:ExtendedScrollView VerticalOptions="FillAndExpand"
+                                     VerticalScrollBarVisibility="Never"
+                                     RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                                     RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+            <StackLayout HorizontalOptions="FillAndExpand"
+                         Padding="0, 40, 0, 80">
+                <Grid HeightRequest="550">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="350" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage Source="{Binding Product.Photo}"
+                                                Grid.RowSpan="2"
+                                                sharedTransitions:Transition.Name="dogtransition"
+                                                Aspect="AspectFill"/>
+                    
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 Orientation="Horizontal"
+                                 Grid.Row="1"
+                                 HorizontalOptions="CenterAndExpand">
+                        <yummy:PancakeView HeightRequest="120"
+                                           x:Name="priceContainer"
+                                           CornerRadius="20"
+                                           BackgroundColor="#90000000"
+                                           WidthRequest="120">
+                            <StackLayout VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Label Text="Price"
+                                       TextColor="White"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontSize="20"
+                                   />
+                                <Label Text="{Binding Product.Price}"
+                                       TextColor="White"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontAttributes="Bold"
+                                       FontSize="24"
+                                   />
+                            </StackLayout>
+                        </yummy:PancakeView>
+                        <yummy:PancakeView HeightRequest="120"
+                                           x:Name="sizeContainer"
+                                           CornerRadius="20"
+                                           BackgroundColor="#80000000"
+                                           WidthRequest="120">
+                            <StackLayout VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Label Text="Size"
+                                       TextColor="White"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontSize="20"/>
+                                <Label Text="{Binding Product.Size}"
+                                       TextColor="White"
+                                       HorizontalOptions="CenterAndExpand"
+                                       FontAttributes="Bold"
+                                       FontSize="24"/>
+                            </StackLayout>
+                        </yummy:PancakeView>
+                    </StackLayout>
+                   
+                </Grid>
+                <StackLayout VerticalOptions="StartAndExpand"
+                             x:Name="productName"
+                             Margin="20, 5">
+                    <Label Text="{Binding Product.Name}"
+                           FontSize="35"
+                           FontAttributes="Bold"/>
+                    <Button Text="Buy Now"
+                            BackgroundColor="Transparent"
+                            FontAttributes="Bold"
+                            TextColor="#fc6219"
+                            FontSize="18"
+                            HorizontalOptions="Start"/>
+                    <StackLayout Orientation="Horizontal">
+                        <BoxView HeightRequest="2"
+                                 BackgroundColor="#000"
+                                 WidthRequest="30"
+                                 VerticalOptions="End"
+                                 HorizontalOptions="Start"/>
+                        <Label Text="{Binding Product.Rating}"
+                               HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.Star}"
+                               FontFamily="{StaticResource FontAwesomeSolid}"
+                               />
+                    </StackLayout>
+                    <Label Text="{Binding Product.Description}"
+                           TextColor="#555"
+                           FontSize="16"
+                           LineHeight="1.2" />
+                </StackLayout>
+            </StackLayout>       
+        </controls:ExtendedScrollView>
+        <StackLayout VerticalOptions="Start"
+                     Orientation="Horizontal"
+                     RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                     RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                     Margin="10, 30">
+            <Button Text="{x:Static fontawesome:FontAwesomeIcons.ChevronLeft}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    TextColor="Black"
+                    FontSize="20"
+                    BackgroundColor="Transparent"
+                    Command="{prism:GoBack}" 
+                    HorizontalOptions="StartAndExpand">
+            </Button>
+            <Button Text="{x:Static fontawesome:FontAwesomeIcons.EllipsisV}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    TextColor="Black"
+                    FontSize="20"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="EndAndExpand">
+            </Button>
+        </StackLayout>
+        <yummy:PancakeView VerticalOptions="EndAndExpand"
+                           Elevation="-20"
+                           HasShadow="True"
+                           HorizontalOptions="FillAndExpand"
+                           RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                           RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+            
+           <Grid HorizontalOptions="FillAndExpand"
+                 ColumnSpacing="0"
+                 HeightRequest="60"
+                 x:Name="moreLikeSection"
+                 RowSpacing="0"
+                 BackgroundColor="White">
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width="*" />
+                   <ColumnDefinition Width="Auto" />
+                   <ColumnDefinition Width="Auto" />
+               </Grid.ColumnDefinitions>
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="59"/>
+                   <RowDefinition Height="Auto"/>
+                   <RowDefinition Height="400"/>
+               </Grid.RowDefinitions>
+              <Label Margin="40, 0"
+                     VerticalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold"
+                                  Text="More Like this "/>
+                            <Span FontFamily="{StaticResource FontAwesomeSolid}"
+                                  Text="{x:Static fontawesome:FontAwesomeIcons.ChevronUp}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MoreLikeSectionToggle" />
+                    </Label.GestureRecognizers>
+                </Label>            
+               <Button Text="{x:Static fontawesome:FontAwesomeIcons.Heart}"
+                       FontFamily="{StaticResource FontAwesomeRegular}"
+                       FontSize="20"
+                       x:Name="favBtn"
+                       BackgroundColor="#fc6219"
+                       CornerRadius="0"
+                       Padding="20"
+                       Grid.Column="1"
+                       TextColor="White">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button"
+                                    Binding="{Binding Product.IsFavorite}"
+                                    Value="True">
+                            <Setter Property="FontFamily"
+                                    Value="{StaticResource FontAwesomeSolid}" />
+                            <Setter Property="TextColor"
+                                    Value="White"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+               <Button Text="{x:Static fontawesome:FontAwesomeIcons.ShoppingBasket}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       x:Name="shareBtn"
+                       BackgroundColor="#222"
+                       Padding="20"
+                       CornerRadius="0"
+                       Grid.Column="2"
+                       FontSize="20"
+                       TextColor="White"/>
+               <BoxView BackgroundColor="#DDD"
+                        HeightRequest="1"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="3"/>
+               <StackLayout HeightRequest="400"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="3">
+
+               </StackLayout>
+           </Grid>
+        </yummy:PancakeView>
+    </RelativeLayout>
+</ContentPage>

@@ -1,4 +1,6 @@
 ﻿using System;
+using FashionStore.Views;
+using Plugin.SharedTransitions;
 using Prism;
 using Prism.Ioc;
 using Xamarin.Forms;
@@ -16,15 +18,12 @@ namespace FashionStore
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
-                          .With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
-                          .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
-            await NavigationService.NavigateAsync("NavigationPage/ProductsPage");
+            await NavigationService.NavigateAsync($"{nameof(SharedTransitionNavigationPage)}/{nameof(ProductsPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>();
         }
     }
 }

@@ -10,7 +10,9 @@ namespace FashionStore.Models
         public string Photo { get; set; }
         public bool IsFavorite { get; set; }
         public string Description { get; set; }
-        public int Id { get;  set; }
+        public double Rating { get; set; }
+        public string Size { get; set; }
+        public int Id { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
