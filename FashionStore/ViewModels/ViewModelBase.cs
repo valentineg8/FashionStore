@@ -10,6 +10,7 @@ namespace FashionStore.ViewModels
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible, INotifyPropertyChanged
     {
         protected INavigationService NavigationService { get; private set; }
+
         public DelegateCommand<Product> ToggleFavoriteCommand { get; set; }
 
         public ViewModelBase(INavigationService navigationService)
@@ -22,6 +23,12 @@ namespace FashionStore.ViewModels
         {
             product.IsFavorite = !product.IsFavorite;
         }
+
+        internal void OnNavigatedTo()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
 

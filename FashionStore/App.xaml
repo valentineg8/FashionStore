@@ -33,6 +33,22 @@
             </OnPlatform>
 
             <OnPlatform x:TypeArguments="x:String" 
+                        x:Key="MuliRegular">
+              <On Platform="Android" 
+                  Value="MuliRegular.ttf#Regular" /> 
+              <On Platform="iOS" 
+                  Value="Muli-Regular" /> 
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                        x:Key="MuliBold">
+              <On Platform="Android" 
+                  Value="MuliBold.ttf#Bold" /> 
+              <On Platform="iOS" 
+                  Value="Muli-Bold" /> 
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
                         x:Key="Sacramento"> 
               <On Platform="Android" 
                   Value="SacramentoRegular.ttf#Regular" /> 
@@ -40,5 +56,13 @@
                   Value="Sacramento-Regular" /> 
             </OnPlatform> 
           </ResourceDictionary>
+          <Style TargetType="Label">
+              <Setter Property="FontFamily"
+                      Value="{StaticResource MuliRegular}"/>
+          </Style>
+         <Style TargetType="Button">
+              <Setter Property="FontFamily"
+                      Value="{StaticResource MuliRegular}"/>
+          </Style>
     </Application.Resources>
 </prism:PrismApplication>

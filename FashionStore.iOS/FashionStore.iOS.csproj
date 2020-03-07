@@ -154,6 +154,8 @@
     <BundleResource Include="Resources\FontAwesome5Regular.otf" />
     <BundleResource Include="Resources\FontAwesome5Solid.otf" />
     <BundleResource Include="Resources\SacramentoRegular.ttf" />
+    <BundleResource Include="Resources\MuliBold.ttf" />
+    <BundleResource Include="Resources\MuliRegular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

@@ -18,27 +18,25 @@
     </Grid.RowDefinitions>
     <yummy:PancakeView CornerRadius="20"
                     Grid.RowSpan="2">
-        <ffimageloading:CachedImage Source="{Binding Photo}"
+        <ffimageloading:CachedImage Source="{Binding Product.Photo, Source={x:Reference product}}"
                                     sharedTransitions:Transition.Name="dogtransition"
-                                    sharedTransitions:Transition.Group="{Binding Id}"
+                                    sharedTransitions:Transition.Group="{Binding Product.Id, Source={x:Reference product}}"
                                     Aspect="AspectFill"/>
     </yummy:PancakeView>
     <yummy:PancakeView CornerRadius="0, 0, 20, 20"
                     Grid.Row="1"
-                    BackgroundColor="#90000000"
-                    >
+                    BackgroundColor="#90000000">
         <StackLayout Padding="10, 0"
                     VerticalOptions="CenterAndExpand"
                     Spacing="2">
-        <Label Text="{Binding Name}"
+        <Label Text="{Binding Product.Name, Source={x:Reference product}}"
                 FontSize="15"
-                sharedTransitions:Transition.Name="nameTransition"
-                sharedTransitions:Transition.Group="{Binding Id}"
                 TextColor="White"/>
-        <Label Text="{Binding Price}"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="#F0F0F0"/>
+        <Label Text="{Binding Product.Price, Source={x:Reference product}}"
+               FontSize="18"
+               FontFamily="{StaticResource MuliBold}"
+               FontAttributes="Bold"
+               TextColor="#F0F0F0"/>
         </StackLayout>
     </yummy:PancakeView>
                              
@@ -51,7 +49,7 @@
         HorizontalOptions="EndAndExpand">
         <Label.Triggers>
             <DataTrigger TargetType="Label"
-                        Binding="{Binding IsFavorite}"
+                        Binding="{Binding Product.IsFavorite, Source={x:Reference product}}"
                         Value="True">
                 <Setter Property="FontFamily"
                         Value="{DynamicResource FontAwesomeSolid}"/>
@@ -62,12 +60,12 @@
         <Label.Behaviors>
             <b:ViewTappedButtonBehavior AnimationType="Scale"
                                         Command="{Binding ToggleFavoriteCommand, Source={x:Reference product}}"
-                                        CommandParameter="{Binding }"/>
+                                        CommandParameter="{Binding Product, Source={x:Reference product}}"/>
         </Label.Behaviors>
     </Label>
     <Grid.GestureRecognizers>
         <TapGestureRecognizer Command="{Binding GoToDetailCommand, Source={x:Reference product}}"
-                              CommandParameter="{Binding }" />
+                              CommandParameter="{Binding Product, Source={x:Reference product}}" />
        
     </Grid.GestureRecognizers>
 </Grid>

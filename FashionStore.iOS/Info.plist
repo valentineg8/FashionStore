@@ -40,6 +40,8 @@
 		<string>FontAwesome5Solid.otf</string>
 		<string>FontAwesome5BrandsRegular.otf</string>
 		<string>SacramentoRegular.ttf</string>
+		<string>MuliBold.ttf</string>
+		<string>MuliRegular.ttf</string>
 	</array>
 </dict>
 </plist>

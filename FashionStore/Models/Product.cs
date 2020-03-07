@@ -12,6 +12,7 @@ namespace FashionStore.Models
         public string Description { get; set; }
         public double Rating { get; set; }
         public string Size { get; set; }
+        public Category Category { get; set; }
         public int Id { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;

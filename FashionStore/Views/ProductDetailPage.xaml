@@ -50,6 +50,8 @@
                         Value="24"/>
                 <Setter Property="FontAttributes"
                         Value="Bold"/>
+                 <Setter Property="FontFamily"
+                        Value="{StaticResource MuliBold}"/>
             </Style>
 
             <Style x:Key="footerBtn"
@@ -118,6 +120,7 @@
                              Opacity="0"
                              Margin="20, 5">
                     <Label Text="{Binding Product.Name}"
+                           FontFamily="{StaticResource MuliBold}"
                            FontSize="35"
                            FontAttributes="Bold"/>
                     <Button Text="Buy Now"
@@ -187,9 +190,8 @@
                    <ColumnDefinition Width="Auto" />
                </Grid.ColumnDefinitions>
                <Grid.RowDefinitions>
-                   <RowDefinition Height="59"/>
-                   <RowDefinition Height="Auto"/>
-                   <RowDefinition Height="400"/>
+                   <RowDefinition Height="60"/>
+                   <RowDefinition Height="290"/>
                </Grid.RowDefinitions>
                <StackLayout Orientation="Horizontal"
                             Margin="40, 0"
@@ -197,6 +199,7 @@
                             x:Name="moreLikeBtn"
                             VerticalOptions="FillAndExpand">
                    <Label Text="More Like this"
+                          FontFamily="{StaticResource MuliBold}"
                           VerticalOptions="CenterAndExpand"
                           FontAttributes="Bold"/>
                    <Label FontFamily="{StaticResource FontAwesomeSolid}"
@@ -232,24 +235,29 @@
                        Grid.Column="2"
                        BackgroundColor="#222"
                        Style="{StaticResource footerBtn}"/>
-               <BoxView BackgroundColor="#DDD"
-                        HeightRequest="1"
-                        Grid.Row="1"
-                        Grid.ColumnSpan="3"/>
-               <StackLayout HeightRequest="280"
-                            Grid.Row="2"
+               <StackLayout HeightRequest="270"
+                            Grid.Row="1"
+                            BackgroundColor="#222"
+                            Padding="0, 10"
                             Grid.ColumnSpan="3">
-                   <ScrollView Orientation="Horizontal"
-                               HorizontalScrollBarVisibility="Never">
-                        <FlexLayout BindableLayout.ItemsSource="{Binding Products}"
-                                    Wrap="NoWrap">
-                            <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <components:ProductComponent ToggleFavoriteCommand="{Binding BindingContext.ToggleFavoriteCommand, Source={x:Reference DetailPage}}"/>
-                                    </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </FlexLayout>
-                    </ScrollView>
+                   <CarouselView ItemsSource="{Binding Products}"
+                                 PeekAreaInsets="80"
+                                  HorizontalScrollBarVisibility="Never"
+                                  VerticalOptions="FillAndExpand">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                               SnapPointsAlignment="Center"
+                                               SnapPointsType="MandatorySingle"
+                                               ItemSpacing="20" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <components:ProductComponent GoToDetailCommand="{Binding BindingContext.GoToDetailCommand, Source={x:Reference DetailPage}}"
+                                                                 Product="{Binding }"
+                                                                 ToggleFavoriteCommand="{Binding BindingContext.ToggleFavoriteCommand, Source={x:Reference DetailPage}}"/>
+                                </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
                </StackLayout>
            </Grid>
         </yummy:PancakeView>

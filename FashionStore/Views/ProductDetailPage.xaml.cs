@@ -38,11 +38,11 @@ namespace FashionStore.Views
             Animation animateSection;
             if (MoreLikeSectionIsOpen)
             {
-                animateSection = new Animation(d => moreLikeSection.HeightRequest = d, 340, 60);
+                animateSection = new Animation(d => moreLikeSection.HeightRequest = d, 350, 60);
             }
             else
             {
-                animateSection = new Animation(d => moreLikeSection.HeightRequest = d, 60, 340);
+                animateSection = new Animation(d => moreLikeSection.HeightRequest = d, 60, 350);
             }
             animateSection.Commit(moreLikeSection, "MoreLikeSectionToggleAnimation", 60, 500, Easing.CubicOut);
             MoreLikeSectionIsOpen = !MoreLikeSectionIsOpen;

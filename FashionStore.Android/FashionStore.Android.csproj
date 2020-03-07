@@ -117,6 +117,8 @@
     <AndroidAsset Include="Assets\FontAwesome5Regular.otf" />
     <AndroidAsset Include="Assets\FontAwesome5Solid.otf" />
     <AndroidAsset Include="Assets\SacramentoRegular.ttf" />
+    <AndroidAsset Include="Assets\MuliBold.ttf" />
+    <AndroidAsset Include="Assets\MuliRegular.ttf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
