@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:components="clr-namespace:FashionStore.Components"
+             xmlns:utils="clr-namespace:FashionStore.Utils"
+             x:Class="FashionStore.Views.ProductsPage"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding SelectedProductId}"
+             x:Name="MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="productTemplate">
+                <components:ProductComponent GoToDetailCommand="{Binding BindingContext.GoToDetailCommand, Source={x:Reference MainPage}}"
+                                             Product="{Binding Item}"
+                                             ToggleFavoriteCommand="{Binding BindingContext.ToggleFavoriteCommand, Source={x:Reference MainPage}}"/>
+            </DataTemplate>
+            <DataTemplate x:Key="productsTemplate">
+                <StackLayout Spacing="0"
+                             HeightRequest="300">
+                    <BoxView HeightRequest="1"
+                             Margin="0, 10"
+                             HorizontalOptions="Fill"
+                             BackgroundColor="#DDD"/>
+                    <Label  Text="{Binding Title}"
+                            Margin="20, 0, 0, 5"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            />
+                    <CarouselView ItemsSource="{Binding Items}"
+                                  PeekAreaInsets="40"
+                                  HorizontalScrollBarVisibility="Never"
+                                  VerticalOptions="CenterAndExpand">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                               SnapPointsAlignment="Center"
+                                               SnapPointsType="MandatorySingle"
+                                               ItemSpacing="10" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <components:ProductComponent GoToDetailCommand="{Binding BindingContext.GoToDetailCommand, Source={x:Reference MainPage}}"
+                                                                Product="{Binding }"
+                                                                WidthRequest="200"
+                                                                ToggleFavoriteCommand="{Binding BindingContext.ToggleFavoriteCommand, Source={x:Reference MainPage}}"/>
+                                </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <BoxView HeightRequest="1"
+                             Margin="0, 10"
+                             HorizontalOptions="Fill"
+                             BackgroundColor="#DDD"/>
+                </StackLayout>
+            </DataTemplate>
+            <utils:ProductTemplateSelector x:Key="productTemplateSelector"
+                                           ProductsTemplate="{StaticResource productsTemplate}"
+                                           ProductTemplate="{StaticResource productTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <RelativeLayout Padding="0">
+        
+        <ScrollView Margin="{OnPlatform Android='0, 55, 0, 0', iOS='0, 80, 0, 0'}"
+                    RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                    RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                <FlexLayout BindableLayout.ItemsSource="{Binding Products}"
+                            Margin="0, 10, 0, 0"
+                            BindableLayout.ItemTemplateSelector="{StaticResource productTemplateSelector}"
+                            x:Name="productList"
+                            Wrap="Wrap" ></FlexLayout>
+        </ScrollView>
+        <Grid 
+              HeightRequest="{OnPlatform Android='55', iOS='80'}"
+              BackgroundColor="White"
+              RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+              RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Label Text="FashionStore"
+                   FontSize="35"
+                   LineHeight="2"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="EndAndExpand"
+                   FontFamily="{StaticResource Sacramento}"/>
+            <BoxView Grid.Row="1"
+                     HeightRequest="1"
+                     VerticalOptions="End"
+                     BackgroundColor="#DDD"/>
+        </Grid>
+    </RelativeLayout>
+</ContentPage>

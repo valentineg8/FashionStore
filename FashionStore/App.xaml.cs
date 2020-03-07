@@ -1,28 +1,29 @@
 ﻿using System;
+using FashionStore.Views;
+using Plugin.SharedTransitions;
+using Prism;
+using Prism.Ioc;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FashionStore
 {
-    public partial class App : Application
+    [AutoRegisterForNavigation]
+    public partial class App
     {
-        public App()
+        public App() : this(null) { }
+
+        public App(IPlatformInitializer initializer) : base(initializer) { }
+
+        protected override async void OnInitialized()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            await NavigationService.NavigateAsync($"{nameof(SharedTransitionNavigationPage)}/{nameof(ProductsPage)}");
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
+            containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>();
         }
     }
 }

@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:FashionStore.Controls"
+             xmlns:components="clr-namespace:FashionStore.Components"
+             x:Class="FashionStore.Views.ProductDetailPage"
+             x:Name="DetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="detailCard"
+                   TargetType="yummy:PancakeView">
+                <Setter Property="BackgroundColor"
+                        Value="#80000000"/>
+                <Setter Property="CornerRadius"
+                        Value="20"/>
+
+                 <Setter Property="Scale"
+                        Value="0"/>
+                <Setter Property="TranslationY"
+                        Value="100"/>
+
+                <Setter Property="HeightRequest"
+                        Value="120"/>
+                <Setter Property="WidthRequest"
+                        Value="120"/>
+            </Style>
+            <Style x:Key="TitleDetailCard"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White"/>
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand"/>
+
+                 <Setter Property="FontSize"
+                        Value="18"/>
+            </Style>
+
+            <Style x:Key="ValueDetailCard"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White"/>
+                <Setter Property="HorizontalOptions"
+                        Value="CenterAndExpand"/>
+                 <Setter Property="FontSize"
+                        Value="24"/>
+                <Setter Property="FontAttributes"
+                        Value="Bold"/>
+                 <Setter Property="FontFamily"
+                        Value="{StaticResource MuliBold}"/>
+            </Style>
+
+            <Style x:Key="footerBtn"
+                   TargetType="Button">
+                <Setter Property="TextColor"
+                        Value="White"/>
+                <Setter Property="Padding"
+                        Value="20"/>
+                 <Setter Property="FontSize"
+                        Value="20"/>
+                <Setter Property="TranslationY"
+                        Value="80"/>
+                <Setter Property="CornerRadius"
+                        Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <RelativeLayout Padding="0">
+        
+        <controls:ExtendedScrollView VerticalOptions="FillAndExpand"
+                                     VerticalScrollBarVisibility="Never"
+                                     RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                                     RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+            <StackLayout HorizontalOptions="FillAndExpand"
+                         Padding="0, 0, 0, 80">
+                <Grid HeightRequest="550">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="350" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ffimageloading:CachedImage Source="{Binding Product.Photo}"
+                                                Grid.RowSpan="2"
+                                                sharedTransitions:Transition.Name="dogtransition"
+                                                Aspect="AspectFill"/>
+                    
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 Orientation="Horizontal"
+                                 Grid.Row="1"
+                                 HorizontalOptions="CenterAndExpand">
+                        <yummy:PancakeView Style="{StaticResource detailCard}"
+                                           x:Name="priceContainer">
+                            <StackLayout VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Label Text="Price"
+                                       Style="{StaticResource TitleDetailCard}"/>
+                                <Label Text="{Binding Product.Price}"
+                                       Style="{StaticResource ValueDetailCard}"/>
+                            </StackLayout>
+                        </yummy:PancakeView>
+                        <yummy:PancakeView Style="{StaticResource detailCard}"
+                                           x:Name="sizeContainer">
+                            <StackLayout VerticalOptions="CenterAndExpand"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Label Text="Size"
+                                       Style="{StaticResource TitleDetailCard}" />
+                                <Label Text="{Binding Product.Size}"
+                                       Style="{StaticResource ValueDetailCard}"/>
+                            </StackLayout>
+                        </yummy:PancakeView>
+                    </StackLayout>
+                   
+                </Grid>
+                <StackLayout VerticalOptions="StartAndExpand"
+                             x:Name="productName"
+                             TranslationY="50"
+                             Opacity="0"
+                             Margin="20, 5">
+                    <Label Text="{Binding Product.Name}"
+                           FontFamily="{StaticResource MuliBold}"
+                           FontSize="35"
+                           FontAttributes="Bold"/>
+                    <Button Text="Buy Now"
+                            BackgroundColor="Transparent"
+                            FontAttributes="Bold"
+                            TextColor="#fc6219"
+                            FontSize="18"
+                            HorizontalOptions="Start"/>
+                    <StackLayout Orientation="Horizontal">
+                        <BoxView HeightRequest="3"
+                                 BackgroundColor="Black"
+                                 WidthRequest="40"
+                                 VerticalOptions="End"
+                                 HorizontalOptions="Start"/>
+                        <Label Text="{Binding Product.Rating}"
+                               HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.Star}"
+                               FontFamily="{StaticResource FontAwesomeSolid}"
+                               />
+                    </StackLayout>
+                    <Label Text="{Binding Product.Description}"
+                           TextColor="#555"
+                           FontSize="16"
+                           LineHeight="1.2" />
+                </StackLayout>
+            </StackLayout>       
+        </controls:ExtendedScrollView>
+        <StackLayout VerticalOptions="Start"
+                     Orientation="Horizontal"
+                     RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                     RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                     Margin="{OnPlatform Android='0', iOS='10, 30'}">
+            <Button Text="{x:Static fontawesome:FontAwesomeIcons.ChevronLeft}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    TextColor="Black"
+                    FontSize="20"
+                    WidthRequest="50"
+                    BackgroundColor="Transparent"
+                    Command="{prism:GoBack}" 
+                    HorizontalOptions="StartAndExpand">
+            </Button>
+            <Button Text="{x:Static fontawesome:FontAwesomeIcons.EllipsisV}"
+                    FontFamily="{StaticResource FontAwesomeSolid}"
+                    WidthRequest="50"
+                    TextColor="Black"
+                    FontSize="20"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="EndAndExpand">
+            </Button>
+        </StackLayout>
+        <yummy:PancakeView VerticalOptions="EndAndExpand"
+                           Elevation="-20"
+                           HasShadow="True"
+                           HorizontalOptions="FillAndExpand"
+                           RelativeLayout.WidthConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                           RelativeLayout.HeightConstraint= "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+            
+           <Grid HorizontalOptions="FillAndExpand"
+                 ColumnSpacing="0"
+                 HeightRequest="60"
+                 x:Name="moreLikeSection"
+                 RowSpacing="0"
+                 BackgroundColor="White">
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width="*" />
+                   <ColumnDefinition Width="Auto" />
+                   <ColumnDefinition Width="Auto" />
+               </Grid.ColumnDefinitions>
+               <Grid.RowDefinitions>
+                   <RowDefinition Height="60"/>
+                   <RowDefinition Height="290"/>
+               </Grid.RowDefinitions>
+               <StackLayout Orientation="Horizontal"
+                            Margin="40, 0"
+                            TranslationX="-180"
+                            x:Name="moreLikeBtn"
+                            VerticalOptions="FillAndExpand">
+                   <Label Text="More Like this"
+                          FontFamily="{StaticResource MuliBold}"
+                          VerticalOptions="CenterAndExpand"
+                          FontAttributes="Bold"/>
+                   <Label FontFamily="{StaticResource FontAwesomeSolid}"
+                          VerticalOptions="CenterAndExpand"
+                          Text="{x:Static fontawesome:FontAwesomeIcons.ChevronUp}"
+                          x:Name="moreLikeArrow"/>
+                   <StackLayout.GestureRecognizers>
+                       <TapGestureRecognizer Tapped="MoreLikeSectionToggle" />
+                   </StackLayout.GestureRecognizers>
+               </StackLayout>
+               <Button Text="{x:Static fontawesome:FontAwesomeIcons.Heart}"
+                       FontFamily="{DynamicResource FontAwesomeRegular}"
+                       Style="{StaticResource footerBtn}"
+                       x:Name="favBtn"
+                       BackgroundColor="#fc6219"
+                       Command="{Binding ToggleFavoriteCommand}"
+                       CommandParameter="{Binding Product}"
+                       Grid.Column="1">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button"
+                                    Binding="{Binding Product.IsFavorite}"
+                                    Value="True">
+                            <Setter Property="FontFamily"
+                                    Value="{DynamicResource FontAwesomeSolid}" />
+                            <Setter Property="TextColor"
+                                    Value="White"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+               <Button Text="{x:Static fontawesome:FontAwesomeIcons.ShoppingBasket}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"
+                       x:Name="shareBtn"
+                       Grid.Column="2"
+                       BackgroundColor="#222"
+                       Style="{StaticResource footerBtn}"/>
+               <StackLayout HeightRequest="270"
+                            Grid.Row="1"
+                            BackgroundColor="#222"
+                            Padding="0, 10"
+                            Grid.ColumnSpan="3">
+                   <CarouselView ItemsSource="{Binding Products}"
+                                 PeekAreaInsets="80"
+                                  HorizontalScrollBarVisibility="Never"
+                                  VerticalOptions="FillAndExpand">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                               SnapPointsAlignment="Center"
+                                               SnapPointsType="MandatorySingle"
+                                               ItemSpacing="20" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <components:ProductComponent GoToDetailCommand="{Binding BindingContext.GoToDetailCommand, Source={x:Reference DetailPage}}"
+                                                                 Product="{Binding }"
+                                                                 ToggleFavoriteCommand="{Binding BindingContext.ToggleFavoriteCommand, Source={x:Reference DetailPage}}"/>
+                                </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+               </StackLayout>
+           </Grid>
+        </yummy:PancakeView>
+    </RelativeLayout>
+</ContentPage>
