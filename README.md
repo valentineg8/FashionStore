@@ -1,6 +1,6 @@
 # FashionStore
 
-<img src="images/FashionStore.gif" Width="600" />
+<img src="images/FashionStore.gif" Width="400" />
 
 ### Platforms
 
