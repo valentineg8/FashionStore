@@ -1,6 +1,7 @@
 # FashionStore
 
 <img src="images/FashionStore.gif" Width="400" />
+<img src="images/FasionStoreAndroid.gif" Width="400" />
 
 ### Platforms
 
